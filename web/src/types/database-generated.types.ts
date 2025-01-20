@@ -37,7 +37,7 @@ export type Database = {
       events: {
         Row: {
           description: string | null
-          government_it: string | null
+          government_id: string | null
           id: string
           location: string
           organization_id: string | null
@@ -46,7 +46,7 @@ export type Database = {
         }
         Insert: {
           description?: string | null
-          government_it?: string | null
+          government_id?: string | null
           id?: string
           location: string
           organization_id?: string | null
@@ -55,12 +55,27 @@ export type Database = {
         }
         Update: {
           description?: string | null
-          government_it?: string | null
+          government_id?: string | null
           id?: string
           location?: string
           organization_id?: string | null
           status?: Database["public"]["Enums"]["event_status"]
           title?: string
+        }
+        Relationships: []
+      }
+      governments: {
+        Row: {
+          id: string
+          name: string
+        }
+        Insert: {
+          id?: string
+          name: string
+        }
+        Update: {
+          id?: string
+          name?: string
         }
         Relationships: []
       }
@@ -125,18 +140,50 @@ export type Database = {
       }
       organizations: {
         Row: {
+          description: string | null
           id: string
           name: string
         }
         Insert: {
+          description?: string | null
           id?: string
           name: string
         }
         Update: {
+          description?: string | null
           id?: string
           name?: string
         }
         Relationships: []
+      }
+      reports: {
+        Row: {
+          generated_on: string
+          government_id: string
+          id: string
+          source: string
+        }
+        Insert: {
+          generated_on: string
+          government_id: string
+          id?: string
+          source: string
+        }
+        Update: {
+          generated_on?: string
+          government_id?: string
+          id?: string
+          source?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reports_government_id_fkey"
+            columns: ["government_id"]
+            isOneToOne: false
+            referencedRelation: "governments"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       resource_requests: {
         Row: {
