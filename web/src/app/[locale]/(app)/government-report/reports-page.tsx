@@ -59,10 +59,10 @@ export default function ReportsPage() {
   }
 
   return (
-    <Box p={8}>
+    <Box p={8} minWidth={500} minHeight={600}>
       <Heading mb={4}>Reports</Heading>
 
-      <Table.Root>
+      <Table.Root mb={10}>
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeader>ID</Table.ColumnHeader>
