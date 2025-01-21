@@ -159,31 +159,23 @@ export type Database = {
       reports: {
         Row: {
           generated_on: string
-          government_id: string
+          government_id: string | null
           id: string
           source: string
         }
         Insert: {
           generated_on: string
-          government_id: string
+          government_id?: string | null
           id?: string
           source: string
         }
         Update: {
           generated_on?: string
-          government_id?: string
+          government_id?: string | null
           id?: string
           source?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "reports_government_id_fkey"
-            columns: ["government_id"]
-            isOneToOne: false
-            referencedRelation: "governments"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       resource_requests: {
         Row: {
